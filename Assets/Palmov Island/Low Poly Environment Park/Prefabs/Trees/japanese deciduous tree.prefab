@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2395017352968626751}
   - component: {fileID: 1626665891860606362}
   - component: {fileID: 3564567543337752912}
-  - component: {fileID: 8468285090874280606}
+  - component: {fileID: 1975787367540828778}
+  - component: {fileID: 1103528187305576008}
   m_Layer: 0
   m_Name: japanese deciduous tree
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059948811161385093}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1626665891860606362
 MeshFilter:
@@ -84,7 +85,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8468285090874280606
+--- !u!205 &1975787367540828778
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059948811161385093}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3564567543337752912}
+  - screenRelativeHeight: 0.2106
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3564567543337752912}
+  - screenRelativeHeight: 0.045813225
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3564567543337752912}
+  m_Enabled: 1
+--- !u!65 &1103528187305576008
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,8 +120,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059948811161385093}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8880078, y: 3.4203942, z: 1.9332283}
+  serializedVersion: 3
+  m_Size: {x: 1.17, y: 3.4203942, z: 0.8}
   m_Center: {x: 0, y: 1.7101971, z: 0.00000029802322}

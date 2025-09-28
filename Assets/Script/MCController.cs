@@ -17,7 +17,9 @@ public class MCController : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 velocity;
+    private Vector3 platformMotion = Vector3.zero;
     private bool isGrounded;
+
 
     void Start()
     {
@@ -46,12 +48,13 @@ public class MCController : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move((move * speed + platformMotion) * Time.deltaTime);
 
         // Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            platformMotion = Vector3.zero;
         }
 
         // Apply gravity
@@ -73,7 +76,8 @@ public class MCController : MonoBehaviour
 
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
-    public void SetVelocity(Vector3 newVelocity){
-        velocity = newVelocity;
+    public void SetVelocity(Vector3 motion)
+    {
+        platformMotion = motion;
     }
 }

@@ -70,11 +70,18 @@ public class MoveingPlatform : MonoBehaviour
             currentIndex = 0;
         return wayPoints[currentIndex];
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<MCController>().SetVelocity(platformVelocity);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<MCController>().SetVelocity(Vector3.zero);
         }
     }
 }

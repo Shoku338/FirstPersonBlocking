@@ -15,11 +15,17 @@ public class MCController : MonoBehaviour
     public Transform playerCamera;   // drag your Camera into this slot in Inspector
     private float xRotation = 0f;
 
+    [Header("interaction setting")]
+    [SerializeField] float interactRange = 3f;
+    [SerializeField] LayerMask interactLayer;
+    [SerializeField] Camera playerCam;
+
     private CharacterController controller;
     private Vector3 velocity;
     private Vector3 platformMotion = Vector3.zero;
     private bool isGrounded;
 
+    private IInteractable currentTarget;
 
     void Start()
     {
@@ -32,6 +38,8 @@ public class MCController : MonoBehaviour
     {
         HandleMovement();
         HandleMouseLook();
+        DetectInteractable();
+        HandleInteraction();
     }
 
     void HandleMovement()
@@ -76,8 +84,39 @@ public class MCController : MonoBehaviour
 
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
+
+    void DetectInteractable()
+    {
+        Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
+        RaycastHit hit;
+        Debug.DrawRay(playerCam.transform.position, playerCam.transform.forward);
+
+        if (Physics.Raycast(ray, out hit, interactRange, interactLayer))
+        {
+            currentTarget = hit.collider.GetComponent<IInteractable>();
+            if (currentTarget != null)
+            {
+                // Optional: Show prompt on screen
+                Debug.Log(currentTarget.GetPrompt());
+            }
+        }
+        else
+        {
+            currentTarget = null;
+        }
+    }
+
+    void HandleInteraction()
+    {
+        if (currentTarget != null && Input.GetKeyDown(KeyCode.E))
+        {
+            currentTarget.Interact();
+        }
+    }
+
     public void SetVelocity(Vector3 motion)
     {
         platformMotion = motion;
     }
+
 }

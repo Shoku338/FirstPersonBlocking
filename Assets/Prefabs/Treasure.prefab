@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6291877354394316151}
   - component: {fileID: 665214752626172250}
   - component: {fileID: 1839588863845906304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,8 +1399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177871156384233402}
-  - component: {fileID: 1553867113556161524}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Treasure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,18 +1423,6 @@ Transform:
   - {fileID: 6978245315948005573}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1553867113556161524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919046822098837429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82fd24238ecb8694982185332bf926db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7448122935167954734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1501,12 +1488,36 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 468476912342e00459f0f84d16482dff, type: 2}
+      objectReference: {fileID: 2100000, guid: e6f4a7609cc2d1e4a940ff7a816bfddf, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: dd47ad2e5c76c9246974cac489f1d862, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0789fc5783ec31c41a04eda28e6ddfc2, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: ddb19248deeab274382575e864cd2087, type: 2}
+    - target: {fileID: -7511558181221131132, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c31d3b7f57534046acee724df3be40b, type: 2}
     - target: {fileID: 919132149155446097, guid: b72f177825984774f8e14220f23f45b5, type: 3}
       propertyPath: m_Name
       value: Box4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1515,6 +1526,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b72f177825984774f8e14220f23f45b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 693113279116848276}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8243208413770736083}
   m_SourcePrefab: {fileID: 100100000, guid: b72f177825984774f8e14220f23f45b5, type: 3}
 --- !u!4 &6978245315948005573 stripped
 Transform:
@@ -1548,3 +1562,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1550514412580984892, guid: b72f177825984774f8e14220f23f45b5, type: 3}
+--- !u!114 &8243208413770736083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754184297076822655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fd24238ecb8694982185332bf926db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisObject: {fileID: 4919046822098837429}

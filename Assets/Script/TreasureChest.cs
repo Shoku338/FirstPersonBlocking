@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class TreasureChest : MonoBehaviour, IInteractable
 {
-    public void Interact()
-    {
+    [SerializeField] GameObject thisObject;
+    public void OnInteractStart(){ }
+    public void OnInteractHold(){ }
+    public void OnInteractEnd(){
         Debug.Log("Get Treasure!");
-        // Your refill logic here
+        Inventory.Instance.AddGearCount();
+        thisObject.SetActive(false);
+        
     }
 
     public string GetPrompt() => "Press [E] to get treasure";

@@ -123,8 +123,8 @@ MonoBehaviour:
   - {fileID: 3264958347793390293}
   - {fileID: 5303977079898492142}
   speed: 6
-  minWaitTime: 1.5
-  maxWaitTime: 3
+  minWaitTime: 1
+  maxWaitTime: 2
 --- !u!54 &3851223464503768643
 Rigidbody:
   m_ObjectHideFlags: 0

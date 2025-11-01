@@ -57,7 +57,12 @@ public class OxygenRefillStation : MonoBehaviour, IInteractable
                 scale.x = fillPercent; // only scale in Y axis
                 oxygenTankVisual.transform.localScale = scale;
                 time = 0;
-            }           
+            }
+            else if (currentOxygen < 0)
+            {
+                OnInteractEnd();
+            }
+
         }
     }
 

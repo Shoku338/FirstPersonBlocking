@@ -28,8 +28,8 @@ public class MCController : MonoBehaviour
     private bool isFalling;
 
     [Header("interaction setting")]
-    [SerializeField] float interactRange = 3f;
-    [SerializeField] float sphereRadius = 0.5f;
+    [SerializeField] float interactRange = 3f; //in meter
+    //[SerializeField] float sphereRadius = 0.5f;
     [SerializeField] LayerMask interactLayer;
     [SerializeField] Camera playerCam;
     [SerializeField] GameObject prompt;
@@ -148,6 +148,7 @@ public class MCController : MonoBehaviour
         { 
             prompt.SetActive(false); 
             promptIMG.SetActive(false); 
+            currentTarget.OnInteractEnd();
             currentTarget = null; 
         } 
     }
@@ -190,10 +191,10 @@ public class MCController : MonoBehaviour
         Gizmos.color = new Color(0f, 1f, 0f, 0.25f); // semi-transparent green
 
         // Start sphere (where cast begins)
-        Gizmos.DrawWireSphere(playerCam.transform.position, sphereRadius);
+        //Gizmos.DrawWireSphere(playerCam.transform.position, sphereRadius);
 
         // End sphere (where cast ends)
-        Gizmos.DrawWireSphere(playerCam.transform.position + playerCam.transform.forward * interactRange, sphereRadius);
+        //Gizmos.DrawWireSphere(playerCam.transform.position + playerCam.transform.forward * interactRange, sphereRadius);
     }
 
     void Dead(){

@@ -404,9 +404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d8773cfcbeb1a408d2c17b49e88648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenGainPerCycle: 10
+  oxygenGainPerCycle: 20
   cycleTime: 3
-  totalOxygen: 50
+  totalOxygen: 60
   requireHold: 1
   oxygenTankVisual: {fileID: 1600316444216667679}
 --- !u!65 &3603821417900729856

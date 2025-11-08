@@ -44,6 +44,8 @@ public class MCController : MonoBehaviour
 
     void Start()
     {
+        prompt.SetActive(false);
+        promptIMG.SetActive(false);
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // lock to center of screen
         Cursor.visible = false;                   // hide it
@@ -146,10 +148,14 @@ public class MCController : MonoBehaviour
         } 
         else 
         { 
-            prompt.SetActive(false); 
-            promptIMG.SetActive(false); 
-            currentTarget.OnInteractEnd();
-            currentTarget = null; 
+            if(currentTarget != null)
+            {
+                prompt.SetActive(false);
+                promptIMG.SetActive(false);
+                currentTarget.OnInteractEnd();
+                currentTarget = null;
+            }
+            
         } 
     }
 
@@ -205,7 +211,7 @@ public class MCController : MonoBehaviour
     void ApplyFallDamage()
     {
         float fallDistance = fallStartY - transform.position.y;
-        Debug.Log($"fall distance {fallDistance}");
+        //Debug.Log($"fall distance {fallDistance}");
         if (fallDistance > Mathf.Abs(fallDamageThreshold))
         {
             float damage = (fallDistance - Mathf.Abs(fallDamageThreshold)) * fallDamageMultiplier;
@@ -223,4 +229,17 @@ public class MCController : MonoBehaviour
     {
         mouseSensitivity = newSensitivity;
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("MovingPlatform"))
+        {
+            var platform = hit.collider.GetComponent<MoveingPlatform>();
+            if (platform != null)
+            {
+                SetVelocity(platform.GetPlatformVelocity());
+            }
+        }
+    }
+
 }

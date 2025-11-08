@@ -72,8 +72,10 @@ public class MoveingPlatform : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log($"Collision Enter with {collision.gameObject.name}");
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log($"player on platform \n add player velocity {platformVelocity}");
             collision.gameObject.GetComponent<MCController>().SetVelocity(platformVelocity);
         }
     }
@@ -84,4 +86,6 @@ public class MoveingPlatform : MonoBehaviour
             collision.gameObject.GetComponent<MCController>().SetVelocity(Vector3.zero);
         }
     }
+
+    public Vector3 GetPlatformVelocity() => platformVelocity;
 }

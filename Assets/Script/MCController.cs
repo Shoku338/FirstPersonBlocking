@@ -240,6 +240,7 @@ public class MCController : MonoBehaviour
                 SetVelocity(platform.GetPlatformVelocity());
             }
         }
+        
     }
 
 }

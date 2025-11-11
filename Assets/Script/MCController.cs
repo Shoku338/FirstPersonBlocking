@@ -11,6 +11,8 @@ public class MCController : MonoBehaviour
     public float speed = 6f;         // Movement speed
     public float jumpHeight = 1.5f;  // Jump strength
     public float gravity = -9.81f;   // Gravity value
+    [SerializeField] private float groundCheckDistance = 0.3f;
+    [SerializeField] private LayerMask groundMask;
 
     [Header("Knockback")]
     private Vector3 knockbackVelocity;
@@ -36,6 +38,7 @@ public class MCController : MonoBehaviour
     [SerializeField] GameObject promptIMG;
 
     private CharacterController controller;
+    private MoveingPlatform currentPlatform;
     private Vector3 velocity;
     private Vector3 platformMotion = Vector3.zero;
     private bool isGrounded;
@@ -63,53 +66,69 @@ public class MCController : MonoBehaviour
 
     void HandleMovement()
     {
-        // Ground check
         bool wasGrounded = isGrounded;
-        isGrounded = controller.isGrounded;
 
+        // Ground check via raycast
+        UpdateGroundPlatform();
+
+        // Handle landing and fall damage
         if (isGrounded && velocity.y < 0)
         {
-            // Just landed!
+            Debug.Log($"Falling : {isFalling}");
             if (isFalling)
             {
+                
                 ApplyFallDamage();
                 isFalling = false;
             }
 
-            velocity.y = -2f;
+            velocity.y = -2f; // small downward push to keep grounded
         }
-        else if (!isGrounded && !wasGrounded)
+        else if (!isGrounded && wasGrounded)
         {
             if (!isFalling && velocity.y < -2f)
             {
+                Debug.Log("Start Falling");
                 fallStartY = transform.position.y;
                 isFalling = true;
             }
         }
 
-        // WASD movement
+        // Base movement input
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move((move * speed + platformMotion) * Time.deltaTime);
+
+        // Combine with platform motion (if standing on one)
+        Vector3 totalMotion = move * speed;
+        if (currentPlatform != null)
+            totalMotion += currentPlatform.GetPlatformVelocity();
+
+        controller.Move(totalMotion * Time.deltaTime);
 
         // Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            platformMotion = Vector3.zero;
+            currentPlatform = null; // detach from platform
         }
 
         // Gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        // Apply knockback movement
+        // Knockback (unchanged)
         if (knockbackVelocity.magnitude > 0.1f)
         {
             controller.Move(knockbackVelocity * Time.deltaTime);
             knockbackVelocity = Vector3.Lerp(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
         }
+
+        // Smoothly clear platform motion when stepping off
+        if (currentPlatform == null)
+            platformMotion = Vector3.Lerp(platformMotion, Vector3.zero, Time.deltaTime * 5f);
+        else
+            platformMotion = currentPlatform.GetPlatformVelocity();
     }
 
 
@@ -230,17 +249,44 @@ public class MCController : MonoBehaviour
         mouseSensitivity = newSensitivity;
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void UpdateGroundPlatform()
     {
-        if (hit.collider.CompareTag("MovingPlatform"))
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
+        Vector3 rayDirection = Vector3.down;
+
+        // Draw debug ray in Scene view
+        Color rayColor = Color.red;
+
+        if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, groundCheckDistance, groundMask))
         {
-            var platform = hit.collider.GetComponent<MoveingPlatform>();
-            if (platform != null)
+            isGrounded = true;
+            rayColor = Color.green; // change color if grounded
+
+            if (hit.collider.CompareTag("MovingPlatform"))
             {
-                SetVelocity(platform.GetPlatformVelocity());
+                var platform = hit.collider.GetComponent<MoveingPlatform>();
+                if (platform != currentPlatform)
+                    currentPlatform = platform;
             }
+            else
+            {
+                currentPlatform = null;
+            }
+
+            // Draw the ray to hit point
+            Debug.DrawLine(rayOrigin, hit.point, rayColor);
+            // Draw a small sphere at the hit point for clarity
+            Debug.DrawRay(hit.point, Vector3.up * 0.05f, Color.yellow);
         }
-        
+        else
+        {
+            isGrounded = false;
+            currentPlatform = null;
+
+            // Draw the full ray length even when not grounded
+            Debug.DrawRay(rayOrigin, rayDirection * groundCheckDistance, rayColor);
+        }
     }
+
 
 }

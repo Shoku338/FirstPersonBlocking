@@ -74,10 +74,9 @@ public class MCController : MonoBehaviour
         // Handle landing and fall damage
         if (isGrounded && velocity.y < 0)
         {
-            Debug.Log($"Falling : {isFalling}");
             if (isFalling)
             {
-                
+                //Debug.Log($"Falling : {isFalling}");
                 ApplyFallDamage();
                 isFalling = false;
             }
@@ -88,9 +87,10 @@ public class MCController : MonoBehaviour
         {
             if (!isFalling && velocity.y < -2f)
             {
-                Debug.Log("Start Falling");
+                
                 fallStartY = transform.position.y;
                 isFalling = true;
+                //Debug.Log("Start Falling " + $" Fall position{fallStartY}");
             }
         }
 
@@ -229,6 +229,7 @@ public class MCController : MonoBehaviour
 
     void ApplyFallDamage()
     {
+        
         float fallDistance = fallStartY - transform.position.y;
         //Debug.Log($"fall distance {fallDistance}");
         if (fallDistance > Mathf.Abs(fallDamageThreshold))

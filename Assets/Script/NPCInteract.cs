@@ -9,10 +9,15 @@ public class NPCInteract : MonoBehaviour, IInteractable
     [SerializeField] float dialogueDuration = 2f;
     private bool hasTraded = false; // Prevent multiple trades
 
-    public void OnInteractStart() { }
-    public void OnInteractHold() { }
+    string originalText;
 
-    public void OnInteractEnd()
+    private void Start()
+    {
+        originalText = dialogueText.text;
+    }
+
+    public void OnInteractStart() { }
+    public void OnInteractHold() 
     {
         if (hasTraded)
         {
@@ -35,6 +40,11 @@ public class NPCInteract : MonoBehaviour, IInteractable
         }
     }
 
+    public void OnInteractEnd()
+    {
+        
+    }
+
     public string GetPrompt() => "Press [E] to Trade";
 
     private void ShowDialogue(string message)
@@ -46,9 +56,14 @@ public class NPCInteract : MonoBehaviour, IInteractable
     private IEnumerator DialogueRoutine(string message)
     {
         dialogueText.text = message;
-        dialogueText.gameObject.SetActive(true);
+        dialogueText.transform.parent.gameObject.SetActive(true);
         yield return new WaitForSeconds(dialogueDuration);
-        dialogueText.text = "";
-        dialogueText.gameObject.SetActive(false);
+        if (!hasTraded)
+            dialogueText.text = originalText;
+
+        else
+            dialogueText.text = "MY MUSHROOM NOW!";
+        yield return new WaitForSeconds(dialogueDuration);
+        dialogueText.transform.parent.gameObject.SetActive(false);
     }
 }

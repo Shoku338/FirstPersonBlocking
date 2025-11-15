@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureChest : MonoBehaviour, IInteractable
+public class TreasureChest: MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject thisObject;
+    public GameObject thisObject;
+
     public void OnInteractStart(){ }
-    public void OnInteractHold(){ }
-    public void OnInteractEnd(){
+    public void OnInteractHold(){
         Debug.Log("Get Treasure!");
         Inventory.Instance.AddGearCount();
         thisObject.SetActive(false);
+    }
+    public void OnInteractEnd(){
+        
         
     }
-
+    private void Start()
+    {
+        
+    }
     public string GetPrompt() => "Press [E] to get treasure";
 }
 

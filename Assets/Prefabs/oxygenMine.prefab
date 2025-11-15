@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2970614624751471944}
   - component: {fileID: 8850613955688222304}
   - component: {fileID: 7801961442555112533}
-  - component: {fileID: 714476667173765549}
   m_Layer: 0
   m_Name: Light
   m_TagString: Untagged
@@ -1731,28 +1730,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5181918533418043383}
   m_Mesh: {fileID: 0}
---- !u!64 &714476667173765549
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5181918533418043383}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &5772217036506763220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,10 +1741,8 @@ GameObject:
   - component: {fileID: 7473314137786697842}
   - component: {fileID: 7348599675967194172}
   - component: {fileID: 5848721920515176982}
-  - component: {fileID: 8097035750210825102}
   - component: {fileID: 8067632571572560566}
-  - component: {fileID: 7327765535533489357}
-  - component: {fileID: 7966754897694156715}
+  - component: {fileID: 8097035750210825102}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -3435,6 +3410,14 @@ MonoBehaviour:
         m_AxisDivisions: 19
         m_HeightCuts: 0
         m_Smooth: 1
+--- !u!33 &8067632571572560566
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5772217036506763220}
+  m_Mesh: {fileID: 0}
 --- !u!23 &8097035750210825102
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3477,51 +3460,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &8067632571572560566
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5772217036506763220}
-  m_Mesh: {fileID: 0}
---- !u!64 &7327765535533489357
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5772217036506763220}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
---- !u!114 &7966754897694156715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5772217036506763220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5420a285881e9654384ce37f01a1b6a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oxygenDrainAmount: 20
-  knockbackForce: 70
-  parentObject: {fileID: 6822098374053293268}
 --- !u!1 &6822098374053293268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3531,6 +3469,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8024415032278017493}
+  - component: {fileID: 2621334982468019368}
+  - component: {fileID: 4089360301620162896}
   m_Layer: 0
   m_Name: oxygenMine
   m_TagString: Untagged
@@ -3555,3 +3495,39 @@ Transform:
   - {fileID: 7868461641447260830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2621334982468019368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822098374053293268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5420a285881e9654384ce37f01a1b6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oxygenDrainAmount: 20
+  knockbackForce: 70
+  parentObject: {fileID: 6822098374053293268}
+--- !u!65 &4089360301620162896
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6822098374053293268}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8, y: 1, z: 1.8}
+  m_Center: {x: 2.24, y: 0.67, z: 2}

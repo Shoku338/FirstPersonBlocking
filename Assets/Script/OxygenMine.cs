@@ -11,6 +11,8 @@ public class OxygenMine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!enabled)
+            return;
         if (other.CompareTag("Player"))
         {
             // Drain oxygen

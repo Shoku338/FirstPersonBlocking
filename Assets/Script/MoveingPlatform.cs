@@ -104,7 +104,7 @@ public class MoveingPlatform : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (wayPoints == null || wayPoints.Length < 2)
             return;

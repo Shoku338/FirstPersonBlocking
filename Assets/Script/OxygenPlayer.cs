@@ -18,7 +18,7 @@ public class OxygenPlayer : MonoBehaviour
     [SerializeField] Slider cycleSlider;
 
     float time;
-
+    float OxygenDrainMultiplier = 1;
     bool reduceOxygen = true;
 
     void Awake()
@@ -46,7 +46,7 @@ public class OxygenPlayer : MonoBehaviour
             time += Time.deltaTime;
             if (time >= timeToLoseOxygen)
             {
-                currentOxygen -= oxygenLostperTime;
+                currentOxygen -= oxygenLostperTime * OxygenDrainMultiplier;
                 time = 0;
             }
         }
@@ -84,6 +84,9 @@ public class OxygenPlayer : MonoBehaviour
     public void SetIsreducing(bool state){
         reduceOxygen = state;
     }
-
+    public void SetDrainMultiplier(float newMultiplier)
+    {
+        OxygenDrainMultiplier = newMultiplier;
+    }
 
 }

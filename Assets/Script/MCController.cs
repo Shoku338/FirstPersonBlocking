@@ -76,7 +76,7 @@ public class MCController : MonoBehaviour
         {
             if (isFalling)
             {
-                //Debug.Log($"Falling : {isFalling}");
+                Debug.Log($"Falling : {isFalling}");
                 ApplyFallDamage();
                 isFalling = false;
             }
@@ -85,12 +85,12 @@ public class MCController : MonoBehaviour
         }
         else if (!isGrounded && wasGrounded)
         {
-            if (!isFalling && velocity.y < -2f)
+            if (!isFalling )
             {
                 
                 fallStartY = transform.position.y;
                 isFalling = true;
-                //Debug.Log("Start Falling " + $" Fall position{fallStartY}");
+                Debug.Log("Start Falling " + $" Fall position{fallStartY}");
             }
         }
 
@@ -180,22 +180,28 @@ public class MCController : MonoBehaviour
 
     void HandleInteraction()
     {
-        if (currentTarget != null)
+        if (currentTarget != null )
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            MonoBehaviour component = currentTarget as MonoBehaviour;
+            if (component != null && component.enabled)
             {
-                currentTarget.OnInteractStart();
-            }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    currentTarget.OnInteractStart();
+                }
 
-            if (Input.GetKey(KeyCode.E))
-            {
-                currentTarget.OnInteractHold();
-            }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    currentTarget.OnInteractHold();
+                }
 
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                currentTarget.OnInteractEnd();
+                if (Input.GetKeyUp(KeyCode.E))
+                {
+                    currentTarget.OnInteractEnd();
+                }
+
             }
+            
         }
     }
 
@@ -231,7 +237,7 @@ public class MCController : MonoBehaviour
     {
         
         float fallDistance = fallStartY - transform.position.y;
-        //Debug.Log($"fall distance {fallDistance}");
+        Debug.Log($"fall distance {fallDistance}");
         if (fallDistance > Mathf.Abs(fallDamageThreshold))
         {
             float damage = (fallDistance - Mathf.Abs(fallDamageThreshold)) * fallDamageMultiplier;

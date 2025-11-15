@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cab46bc39dadd3419b05cf9befa474b, type: 3}
+  m_Name: EnvironmentSpawnConfig
+  m_EditorClassIdentifier: 
+  SpawnableObjects:
+  - ObjectName: Tree
+    Prefabs:
+    - {fileID: 6955284481156177808, guid: afe706e7fb34aa04aa74bdcd9b705929, type: 3}
+    - {fileID: 3471150395330232931, guid: 49c16e62d01dc124c96fe6a68b31a5de, type: 3}
+    - {fileID: 6304981980776018901, guid: cc9fadb8a79caa94992903911ee6d7d7, type: 3}
+    SpawnWeight: 0.4
+    IllusionChance: 0.3
+  - ObjectName: Mushroom
+    Prefabs:
+    - {fileID: 4260829558461721381, guid: 421364b7f95a20c4e974e6cec68435e6, type: 3}
+    SpawnWeight: 0.25
+    IllusionChance: 0.3
+  - ObjectName: Mines
+    Prefabs:
+    - {fileID: 6822098374053293268, guid: 4c11793571d9cbf48902f8d3cf238805, type: 3}
+    SpawnWeight: 0.25
+    IllusionChance: 0.5
+  - ObjectName: Oxygen
+    Prefabs:
+    - {fileID: 3981684188266915043, guid: 51419067cbef32c4fb7af913e4605317, type: 3}
+    SpawnWeight: 0.05
+    IllusionChance: 0.8
+  - ObjectName: Gear
+    Prefabs:
+    - {fileID: 4919046822098837429, guid: 2f92df0e4dde4484bb46e8aedc9ccb7e, type: 3}
+    SpawnWeight: 0.05
+    IllusionChance: 1
